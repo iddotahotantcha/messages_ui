@@ -55,11 +55,42 @@ class _PagePrincipaleState extends State<PagePrincipale> {
             iconSize: 30.0,
             onSelected: (String newValue) {
               _btn3SelectedVal = newValue;
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(_btn3SelectedVal),
-                ),
-              );
+              
+              // Navigation vers les pages selon l'option choisie
+              switch (newValue) {
+                case 'Archivées':
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Archivees()),
+                  );
+                  break;
+                case 'Spam et conversations bloquées':
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Spam()),
+                  );
+                  break;
+                case 'Paramètres':
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Parametres()),
+                  );
+                  break;
+                case 'Aide et commentaires':
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Aide()),
+                  );
+                  break;
+                default:
+                  // Afficher une snackbar si aucune navigation n'est associée
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('$newValue'),
+                    ),
+                  );
+                  break;
+              }
             },
             itemBuilder: (BuildContext context) => _popUpMenuItems,
           ),
@@ -112,8 +143,7 @@ class _PagePrincipaleState extends State<PagePrincipale> {
         child: FloatingActionButton(
           backgroundColor: Color(0xFF45C5FB),
           onPressed: () {
-            // Navigator.push(context, MaterialPageRoute(builder: (builder) =>NouvelleConversation()));
-            Navigator.push(context, MaterialPageRoute(builder: (builder) =>Archivees()));
+            Navigator.push(context, MaterialPageRoute(builder: (builder) =>NouvelleConversation()));
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
