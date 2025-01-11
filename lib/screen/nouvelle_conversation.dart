@@ -9,8 +9,22 @@ class NouvelleConversation extends StatefulWidget {
 }
 
 class _NouvelleConversationState extends State<NouvelleConversation> {
+  final List<Color> colors = [
+    Colors.red,
+    Colors.green,
+    Colors.blue,
+    Colors.orange,
+    Colors.purple,
+    Colors.yellow,
+    Colors.pink,
+    Colors.teal,
+  ];
+
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor,
@@ -64,15 +78,19 @@ class _NouvelleConversationState extends State<NouvelleConversation> {
                     height: 30.0,
                     width: 150.0,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
-                      color: Color(0xFF45C5FB),
-                    ),
+                        borderRadius: BorderRadius.circular(5.0),
+                        //color: Color(0xFF45C5FB),
+                        border: Border.all(
+                          color: Color(0xFF45C5FB),
+                        )),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
                           Icons.sim_card_outlined,
+                          color: Color(0xFF45C5FB),
                         ),
+                        SizedBox(width: 10.0),
                         Text(
                           "MTN Bénin",
                           style: TextStyle(color: TextColor, fontSize: 18.0),
@@ -85,12 +103,59 @@ class _NouvelleConversationState extends State<NouvelleConversation> {
             ),
             SizedBox(height: 15.0),
             Expanded(
-              child: ListView.builder(
-                itemCount: 30,
-                itemBuilder: (context, index) {
+                child: ListView.builder(
+              itemCount: 31, // Augmenté de 1 pour inclure le bouton au début
+              itemBuilder: (context, index) {
+                if (index == 0) {
+                  // Si c'est le premier élément, on affiche un bouton
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      top: 10.0,
+                      bottom: 10.0,
+                      left: 15.0,
+                      right: 200.0
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        // *
+                      },
+                      child: Container(
+                        height: 50.0,
+                        width: 250.0,
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 2, 165, 235),
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.person_add_alt,
+                              color: TextColor,
+                              size: 30.0,
+                            ),
+                            SizedBox(width: 10.0),
+                            Text(
+                              'Mon Bouton',
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                color: TextColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                } else {
+                  // Sinon, on affiche les ListTile classiques
+                  Color circleColor = colors[(index - 1) %
+                      colors
+                          .length]; // Utilisation de index-1 pour ne pas changer l'ordre des couleurs
                   return ListTile(
                     leading: CircleAvatar(
-                      backgroundColor: Colors.green,
+                      backgroundColor: circleColor,
                       child: Icon(
                         Icons.person,
                         color: TextColor,
@@ -113,9 +178,9 @@ class _NouvelleConversationState extends State<NouvelleConversation> {
                       ),
                     ),
                   );
-                },
-              ),
-            )
+                }
+              },
+            ))
           ],
         ),
       ),
