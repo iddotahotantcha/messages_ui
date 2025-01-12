@@ -48,7 +48,7 @@ class _NouvelleConversationState extends State<NouvelleConversation> {
                     style: TextStyle(color: TextColor, fontSize: 18.0),
                   ),
                   SizedBox(width: 20.0),
-                  Container(
+                  SizedBox(
                     width: 350.0,
                     child: TextField(
                       decoration: InputDecoration(

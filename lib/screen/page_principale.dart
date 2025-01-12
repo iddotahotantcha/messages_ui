@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
 import 'package:messages/config.dart';
 import 'package:messages/screen/archivees.dart';
 import 'package:messages/screen/nouvelle_conversation.dart';
@@ -129,7 +130,7 @@ class _PagePrincipaleState extends State<PagePrincipale> {
                   // Afficher une snackbar si aucune navigation n'est associée
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text('$newValue'),
+                      content: Text(newValue),
                     ),
                   );
                   break;
@@ -186,7 +187,7 @@ class _PagePrincipaleState extends State<PagePrincipale> {
       floatingActionButton: AnimatedSwitcher(
         duration: Duration(milliseconds: 200),
         child: _showFullFAB
-            ? Container(
+            ? SizedBox(
                 key: ValueKey("full_fab"),
                 width: 250.0,
                 child: FloatingActionButton(
