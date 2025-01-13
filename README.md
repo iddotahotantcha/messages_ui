@@ -8,7 +8,7 @@ J'ai tenté de recréer les interfaces de l'application Messages de Google préi
 1. Clonez le dépôt :
    ```bash
    git clone <URL_DU_DEPOT>
-   cd bloc_note
+   cd messages_ui
    ```
 
 2. Installez les dépendances :
